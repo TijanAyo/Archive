@@ -7,5 +7,17 @@
         <h1>Contributors</h1>
         <h3>A very big thank you to all our contributors</h3>
     </div>
+
+    <div class=" container">
+        <% for (const authors of contributor){ %>
+            <ul>
+                <li>
+                    <b>
+                        🌟 <%= authors.name %> 🌟 
+                    </b>
+                </li>
+            </ul>
+        <% } %>
+    </div>
 </body>
 </html>

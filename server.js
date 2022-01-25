@@ -12,6 +12,7 @@ const contributor_route = require('./routes/contributors')
 app.set('view engines', 'ejs');
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
+app.use(express.json());
 
 let name = process.env.DB_NAME;
 let pass = process.env.DB_PASS;

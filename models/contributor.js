@@ -9,4 +9,4 @@ const ContributorSchema = new Schema({
     }
 })
 
-module.exports = mongoose.model('article', ContributorSchema);
+module.exports = mongoose.model('contributor', ContributorSchema);
