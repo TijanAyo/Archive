@@ -1,0 +1,34 @@
+<html lang="en">
+    <!-- head tag starts here -->
+    <%- include('../partials/head.ejs') %>
+    <!-- head tag ends here -->
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 m-auto">
+                    <h1 class="text-center display-4 my-4">Upload to Archive</h1>
+
+                    <div class="form-group">
+                        <form action="/materials" method="POST" enctype="multipart/form-data">
+                            <input class="form-control my-2" type="text" name="title" required="true" placeholder="Enter name of material">
+                            <input class="form-control my-2" type="text" name="coursecode" required="true" placeholder="course code of the material">
+                            <div class=" form-group">
+                                <textarea class="form-control" name="description" placeholder="A short description of your upload" row="3"></textarea>
+                            </div>
+                            <input class="form-control-file" type="file" name="file" required="true">
+                            <br />
+                            <button type="submit" class="btn btn-primary mb-2 btn-lg btn-block"> Submit </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>

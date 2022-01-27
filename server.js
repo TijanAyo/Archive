@@ -8,6 +8,7 @@ const app = express();
 // Routes
 const indexroute = require('./routes/index')
 const contributor_route = require('./routes/contributors')
+const material_route = require('./routes/material')
 
 app.set('view engines', 'ejs');
 app.use(express.urlencoded({extended: true}));
@@ -30,3 +31,4 @@ mongoose.connect(dbURI)
 // Using Routes
 app.use(indexroute);
 app.use('/contributors', contributor_route);
+app.use('/materials', material_route);
