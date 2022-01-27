@@ -2,7 +2,8 @@ const express = require('express');
 const Contributor = require('../models/contributor');
 const router = express.Router()
 
-// View all contributors
+// @router GET /contributors
+// @desc View all contributors
 router.get('/', async (req, res)=>{
     try{
         const contributor = await Contributor.find()
@@ -24,12 +25,14 @@ router.get('/', async (req, res)=>{
         });
 }); */
 
-// New contributors
+// @router GET /new
+// @desc add contributor form
 router.get('/new', (req, res)=>{
     res.render('../views/contributors/new.ejs', {contributor: new Contributor()})
 });
 
-// Create contributors
+// @router POST /contributors
+// @desc create contributors and push to DB
 router.post('/', async (req, res)=>{
     const contributor = new Contributor({
         name: req.body.name
