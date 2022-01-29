@@ -8,13 +8,25 @@
             <div class="row">
                 <div class="col-md-6 m-auto">
                     <h1 class="text-center display-4 my-4">Upload to Archive</h1>
-
+                    
+                    <% if (locals.success) { %>
+                        <div class="alert alert-success" role="alert">
+                            <%= success %>
+                        </div>
+                    <% } %>
+                    <% if (locals.error) { %>
+                        <div class="alert alert-danger" role="alert">
+                            <%= error %>
+                        </div>
+                    <% } %>
+                    
                     <div class="form-group">
                         <form action="/materials" method="POST" enctype="multipart/form-data">
-                            <input class="form-control my-2" type="text" name="title" required="true" placeholder="Enter name of material">
-                            <input class="form-control my-2" type="text" name="coursecode" required="true" placeholder="course code of the material">
+                            <input class="form-control my-2" type="text" name="title" required="true" placeholder="Title">
+                            <input class="form-control my-2" type="text" name="coursecode" required="true" placeholder="Course Code">
                             <div class=" form-group">
-                                <textarea class="form-control" name="description" placeholder="A short description of your upload" row="3"></textarea>
+                                <textarea class="form-control" name="description" placeholder="Short Description..." row="3"></textarea>
+                                <span class="badge badge-light right">optional</span>
                             </div>
                             <input class="form-control-file" type="file" name="file" required="true">
                             <br />

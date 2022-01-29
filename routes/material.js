@@ -1,5 +1,59 @@
 const express = require('express');
+const app = express()
 const router = express.Router()
+const Material = require('../models/material')
+
+const flash = require('express-flash');
+app.use(flash());
+
+const mongoose = require('mongoose');
+const path = require('path');
+const multer = require('multer');
+const crypto = require('crypto');
+
+
+const gs = require('gridfs-stream');
+const {GridFsStorage} = require('multer-gridfs-storage');
+const { connect } = require('http2');
+const { appendFile } = require('fs');
+
+let name = process.env.DB_NAME;
+let pass = process.env.DB_PASS;
+const dbURI = `mongodb+srv://Tijan:${pass}@getting-started-with-no.sdrkl.mongodb.net/${name}?retryWrites=true&w=majority`
+
+// Create mongo connection
+// @desc Needed for connecting gridstream
+const conn = mongoose.createConnection(dbURI);
+
+// init gfs
+let gfs;
+conn.once('open', ()=>{
+    // init stream
+    gfs = gs(conn.db, mongoose.mongo);
+    gfs.collection('uploads');
+})
+
+// init storage engine
+const storage = new GridFsStorage({
+    url: dbURI,
+    file: (req, file) => {
+    return new Promise((resolve, reject) => {
+        crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+            return reject(err);
+        }
+        const filename = buf.toString('hex') + path.extname(file.originalname);
+        const fileInfo = {
+            filename: filename,
+            bucketName: 'uploads'
+        };
+        resolve(fileInfo);
+        });
+    });
+    }
+});
+const upload = multer({ storage });
+
 
 // @router GET /materials
 //@desc display all materials
@@ -15,8 +69,21 @@ router.get('/new', (req, res)=>{
 
 // @router POST /material
 // @desc Upload file to DB
-router.post('', (req, res)=> {
+router.post('', upload.single('file'), async (req, res)=> {
+    const material = new Material({
+        title: req.body.title,
+        course_code: req.body.coursecode,
+        description: req.body.description,
+    })
 
+    try{
+        const newmaterial = await material.save()
+
+        res.render('../views/materials/new.ejs', {success: 'Uploaded... Thank you for your contribution'});
+    }
+    catch{
+        res.redirect('../views/materials/new.ejs', {error: 'Uploaded... Thank you for your contribution'})
+    }
 })
 
 
