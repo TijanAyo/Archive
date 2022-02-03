@@ -60,7 +60,7 @@ const upload = multer({ storage });
 //@desc display all materials
 router.get('/', async(req, res)=>{
     try{
-        const all_materials = await Material.find()
+        const all_materials = await Material.find().sort('-createdAt')
         res.render('../views/materials/index.ejs', {material: all_materials, success: 'Uploaded... Thank you for your contribution'})
     }
     catch{
