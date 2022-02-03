@@ -1,0 +1,48 @@
+<html lang="en">
+<!-- head tag starts here -->
+<%- include('../partials/head.ejs') %>
+<!-- head tag ends here -->
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 m-auto">
+                <h1 class="text-center display-4 my-4">All available materials</h1>
+
+                <% if (locals.success) { %> 
+                    <div class="col-12 container">
+                        <div class="alert bg-success mb-5 py-4" role="alert">
+                            <div class="d-flex">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <b class="pl-3 text-white"><%= success %></b>
+                                <a href="#" class="btn m-3 text-white" data-dismiss="alert" aria-label="Close" data-abc="true">Dismiss</a>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+
+                <section class="">
+                    <% for (const materials of material){ %>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card" style="width: 18rem;">
+                                        <div class="card-body">
+                                        <h5 class="card-title"><%= materials.title %></h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">Course Code: <%= materials.course_code %></h6>
+                                        <p class="card-text">Description: Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                        <a href="#" class="card-link btn btn-primary">Download Resource</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

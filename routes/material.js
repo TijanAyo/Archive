@@ -16,6 +16,7 @@ const gs = require('gridfs-stream');
 const {GridFsStorage} = require('multer-gridfs-storage');
 const { connect } = require('http2');
 const { appendFile } = require('fs');
+const material = require('../models/material');
 
 let name = process.env.DB_NAME;
 let pass = process.env.DB_PASS;
@@ -57,8 +58,14 @@ const upload = multer({ storage });
 
 // @router GET /materials
 //@desc display all materials
-router.get('', (req, res)=>{
-
+router.get('/', async(req, res)=>{
+    try{
+        const all_materials = await Material.find()
+        res.render('../views/materials/index.ejs', {material: all_materials, success: 'Uploaded... Thank you for your contribution'})
+    }
+    catch{
+        res.redirect('new')
+    }
 })
 
 // @router GET /new
@@ -79,10 +86,10 @@ router.post('', upload.single('file'), async (req, res)=> {
     try{
         const newmaterial = await material.save()
 
-        res.render('../views/materials/new.ejs', {success: 'Uploaded... Thank you for your contribution'});
+        res.redirect('/materials');
     }
     catch{
-        res.redirect('../views/materials/new.ejs', {error: 'Uploaded... Thank you for your contribution'})
+        res.render('../views/materials/new.ejs', {error: 'An error occured during your upload'})
     }
 })
 
