@@ -45,6 +45,9 @@ DB_NAME = Your DB Name
 DB_PASS = Your DB Pass
 ```
 
+## <strong> Planned Features </strong>
+<p><i> Pulled Request are always welcome <3 :) </i></p>
+
 ## <strong> Live Preview </strong>
 <br />
 <h2><b> STILL IN DEVELOPMENT </b></h2>
