@@ -1,0 +1,10 @@
+# Things i want to fix add / fix
+
+1. Thinking of adding recaptcha before anyone can upload resource
+2. I want to fix the UI of the site
+3. Add a search option on the home page and the material page
+4. Add the images gallery of contributors in the readme section
+
+# ⚙️⚙️⚙️ Working on now
+1. Download logic for each material
+2. Allow contributors to upload image along side name.
