@@ -94,7 +94,7 @@ router.post("", upload.single("file"), async (req, res) => {
   }
 });
 
-router.get("/file/:filename", async (req, res) => {
+router.get("/download/:filename", async (req, res) => {
   try {
     const filename = req.params.filename;
     mongoose.connection.db.collection("uploads.files", (err, uploadFiles) => {
